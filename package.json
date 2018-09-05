@@ -1,0 +1,18 @@
+{
+  "name": "ml-api",
+  "version": "0.1.0",
+  "description": "ML API",
+  "main": "index.js",
+  "repository": "https://github.com/fernandofragoso/ml-api.git",
+  "author": "Fernando Fragoso <fernandofragoso@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "jest": "^23.5.0",
+    "node-fetch": "^2.2.0"
+  },
+  "scripts": {
+    "dev": "node index.js",
+    "test": "jest"
+  }
+}
