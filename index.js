@@ -10,8 +10,15 @@ const SEARCH_URL = `${URL}sites/MLB/search?limit=${LIMIT}&q=`;
 const ITEM_URL = `${URL}items`;
 const DESCRIPTION = 'description';
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.get('/api/items', (req, res) => {
   const q = req.query.q;
+  console.log('search: ' + q);
   fetch(`${SEARCH_URL}${q}`)
     .then(res => res.json())
     .then(json => {
@@ -26,6 +33,7 @@ app.get('/api/items', (req, res) => {
 
 app.get('/api/items/:id', async (req, res) => {
   const id = req.params.id;
+  console.log('get: ' + id);
   const { plain_text } = await fetch(`${ITEM_URL}/${id}/${DESCRIPTION}`).then(res => res.json());
   fetch(`${ITEM_URL}/${id}`)
     .then(res => res.json())

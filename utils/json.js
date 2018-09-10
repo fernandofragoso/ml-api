@@ -36,6 +36,7 @@ const getItem = (item, description = null) => {
     },
     picture: item.thumbnail,
     condition: item.condition,
+    state: item.seller_address.state.name,
     free_shipping: !!item.shipping.free_shipping
   }
 
