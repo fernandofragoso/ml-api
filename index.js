@@ -36,13 +36,22 @@ app.get('/api/items/:id', async (req, res) => {
   console.log('get: ' + id);
   const { plain_text } = await fetch(`${ITEM_URL}/${id}/${DESCRIPTION}`).then(res => res.json());
   fetch(`${ITEM_URL}/${id}`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res.json();
+    })
     .then(json => {
       const response = {
         author: getAuthor(),
         item: getItem(json, plain_text)
       }
       res.send(response);
+    })
+    .catch(({message}) => {
+      res.status(404);
+      res.send({error: message});
     });
 });
 
