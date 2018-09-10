@@ -55,6 +55,7 @@ app.get('/api/items/:id', async (req, res) => {
     });
 });
 
-app.listen(3001, function () {
-  console.log('ML API - LISTENING ON PORT 3001');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`ML API - LISTENING ON PORT ${ PORT }`);
 });
